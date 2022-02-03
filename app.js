@@ -75,7 +75,7 @@ const savePincodes = (pincode) => {
 		process.chdir('/tmp');
 		console.log('New directory: ', process.cwd());
 		const dataJSON = JSON.stringify(pincode);
-		fs.writeFileSync('/tmp/pincodes.json', dataJSON);
+		fs.writeFileSync(`${process.cwd()}/pincodes.json`, dataJSON);
 	} catch (error) {
 		console.log('error in saving pincodes', error);
 	}
@@ -86,7 +86,7 @@ const loadPincodes = () => {
 		console.log('Starting directory: ', process.cwd());
 		process.chdir('/tmp');
 		console.log('New directory: ', process.cwd());
-		const dataBuffer = fs.readFileSync('/tmp/pincodes.json');
+		const dataBuffer = fs.readFileSync(`${process.cwd()}/pincodes.json`);
 		const dataJSON = dataBuffer.toString();
 		console.log('dataJson', dataJSON);
 		return JSON.parse(dataJSON);
