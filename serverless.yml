@@ -6,12 +6,14 @@ functions:
   app:
     handler: app.handler
     events: 
-      - http: ANY /
-      # - http: 'ANY {proxy+}'
-          # path: /
-          # method: ANY 
-          # cors: true
-
+      - http:  
+          path: /
+          method: ANY 
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true
     # pinCodeCheck:
     #   handler: app.handler
     #   events:
@@ -24,7 +26,4 @@ functions:
     #     - httpApi:
     #         path: /upload
     #         method: post
-      # - http: 
-      #     path: /{proxy+}
-      #     method: ANY
-      #     cors: true
+      

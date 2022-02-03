@@ -69,29 +69,30 @@ app.post('/upload', (req, res) => {
 	}
 });
 
-const savePincodes = (pincode) => {
+const savePincodes = async (pincode) => {
 	try {
-		console.log('Starting directory: ', process.cwd());
+		console.log('Starting directory: savePincodes', process.cwd());
 		process.chdir('/tmp');
 		console.log('New directory: ', process.cwd());
 		const dataJSON = JSON.stringify(pincode);
-		fs.writeFileSync(`${process.cwd()}/pincodes.json`, dataJSON);
+		console.log('dataJSON');
+		await fs.writeFile(`${process.cwd()}/pincodes.json`, dataJSON);
 	} catch (error) {
-		console.log('error in saving pincodes', error);
+		console.log('error in saving pincodes savePincodes', error);
 	}
 };
 
-const loadPincodes = () => {
+const loadPincodes = async () => {
 	try {
-		console.log('Starting directory: ', process.cwd());
+		console.log('Starting directory: loadPincodes', process.cwd());
 		process.chdir('/tmp');
 		console.log('New directory: ', process.cwd());
-		const dataBuffer = fs.readFileSync(`${process.cwd()}/pincodes.json`);
+		const dataBuffer = await fs.readFile(`${process.cwd()}/pincodes.json`);
 		const dataJSON = dataBuffer.toString();
 		console.log('dataJson', dataJSON);
 		return JSON.parse(dataJSON);
 	} catch (error) {
-		console.log('error in loading pincodes', error);
+		console.log('error in loading pincodes loadPincodes', error);
 		return [];
 	}
 };
