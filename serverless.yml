@@ -1,0 +1,32 @@
+service: pincode-app
+provider:
+  name: aws
+  runtime: nodejs12.x
+functions:
+  app:
+    handler: app.handler
+    events: 
+      - http: ANY /
+      # - http: 'ANY {proxy+}'
+          # path: /
+          # method: ANY 
+          # cors: true
+
+    # pinCodeCheck:
+    #   handler: app.handler
+    #   events:
+    #     - httpApi:
+    #         path: /pincode-check
+    #         method: get
+    # uploadCsv:
+    #   handler: app.handler
+    #   events:
+    #     - httpApi:
+    #         path: /upload
+    #         method: post
+      # - http: 
+      #     path: /{proxy+}
+      #     method: ANY
+      #     cors: true
+plugins:
+  - serverless-offline 
