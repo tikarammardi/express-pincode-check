@@ -69,25 +69,25 @@ app.post('/upload', (req, res) => {
 	}
 });
 
-const savePincodes = async (pincode) => {
+const savePincodes = (pincode) => {
 	try {
 		console.log('Starting directory: savePincodes', process.cwd());
 		process.chdir('/tmp');
 		console.log('New directory: ', process.cwd());
 		const dataJSON = JSON.stringify(pincode);
 		console.log('dataJSON');
-		await fs.writeFile(`${process.cwd()}/pincodes.json`, dataJSON);
+		fs.writeFileSync(`${process.cwd()}/pincodes.json`, dataJSON);
 	} catch (error) {
 		console.log('error in saving pincodes savePincodes', error);
 	}
 };
 
-const loadPincodes = async () => {
+const loadPincodes = () => {
 	try {
 		console.log('Starting directory: loadPincodes', process.cwd());
 		process.chdir('/tmp');
 		console.log('New directory: ', process.cwd());
-		const dataBuffer = await fs.readFile(`${process.cwd()}/pincodes.json`);
+		const dataBuffer = fs.readFileSync(`${process.cwd()}/pincodes.json`);
 		const dataJSON = dataBuffer.toString();
 		console.log('dataJson', dataJSON);
 		return JSON.parse(dataJSON);
